@@ -1,3 +1,16 @@
+<?php include './DB/database.php' ?>
+
+<?php 
+    /**
+     * Get Total Questions
+     */
+    $query = "SELECT * FROM questions";
+
+    // Get results
+    $results = $conn->query($query) or die($conn->error.__LINE__);
+    $total = $results->num_rows;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,25 +28,20 @@
     </header>
     <main>
         <div class="container">
-            <div class="current">Question 1 of 5</div>
-            <p class="question">
-                What does PHP stand for?
-            </p>
-            <form action="process.php" method="post">
-                <ul class="choices">
-                    <li><input type="radio" name="chice" value="1">PHP: Hypertext Preprocessor</li>
-                    <li><input type="radio" name="chice" value="1">Private Home Page</li>
-                    <li><input type="radio" name="chice" value="1">Presonal Hypertext Preprocessor</li>
-                    <li><input type="radio" name="chice" value="1">Personal Home Page</li>
-                </ul>
-                <input type="submit" value="Submit">
-            </form>
+            <h2>Test you PHP Knowledge</h2>
+            <p>This is a multiple choice quiz to test your knowledge of PHP</p>
+            <ul>
+                <li><strong>Number of Questions: </strong><?php echo $total; ?></li>
+                <li><strong>Type: </strong>Multiple Choice</li>
+                <li><strong>Estimated Time: </strong><?php echo $total * 1; ?> Minutes</li>
+            </ul>
+            <a href="questions.php?n=1" class="start">Start Quiz</a>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            Copyright &copy; 2022, Isaac Adis. All Rights Reserved
+            Copyright &copy; 2022, Isaac A. All Rights Reserved
         </div>
     </footer>
 </body>
