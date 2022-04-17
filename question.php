@@ -1,3 +1,4 @@
+<?php include './includes/init.php'; ?>
 <?php include './DB/database.php'; ?>
 
 <?php
@@ -5,10 +6,19 @@
     $number = (int) $_GET['n'];
 
     /**
+     * Get total questions
+     */
+    $query = "SELECT * FROM `questions`";
+
+    // Get results
+    $results = $conn->query($query) or die($conn->error.__LINE__);
+    $total = $results->num_rows;
+
+    /**
      * Get Question
      */
     $query = "SELECT * FROM `questions`
-              WHERE questions_number = $number";
+              WHERE question_number = $number";
     
     // Get result
     $result = $conn->query($query) or die($conn->error.__LINE__);
@@ -44,18 +54,22 @@
     </header>
     <main>
         <div class="container">
-            <div class="current">Question 1 of 5</div>
+            <div class="current">Question <?php echo $question['question_number']; ?> of <?php echo $total; ?></div>
             <p class="question">
                 <?php echo $question['text']; ?>
             </p>
-            <form action="process.php" method="post">
+
+            <!-- Form -->
+            <form action="./process.php" method="post">
                 <ul class="choices">
                     <?php while($row = $choices->fetch_assoc()) : ?>
-                        <li><input type="radio" name="chice" value="<?php echo $row['id']; ?>"><?php echo $row['text'] ?></li>
+                        <li><input type="radio" name="choice" value="<?php echo $row['id']; ?>"><?php echo $row['text'] ?></li>
                     <?php endwhile; ?>
                 </ul>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" name="submit">
+                <input type="hidden" name="number" value="<?php echo $number; ?>">
             </form>
+            
         </div>
     </main>
 

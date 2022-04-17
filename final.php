@@ -1,3 +1,5 @@
+<?php include './includes/init.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +19,7 @@
         <div class="container">
             <h2>You're Done!</h2>
                 <p>Congrats! You have successfully completed the quiz!</p>
-                <p>Final Score: 10</p>
+                <p>Final Score: <?php echo $_SESSION['score']; ?></p>
                 <a href="./question.php?n=1" class="start">Take Again</a>
         </div>
     </main>

@@ -1,3 +1,4 @@
+<?php include './includes/init.php'; ?>
 <?php include './DB/database.php' ?>
 
 <?php 
@@ -35,7 +36,7 @@
                 <li><strong>Type: </strong>Multiple Choice</li>
                 <li><strong>Estimated Time: </strong><?php echo $total * 1; ?> Minutes</li>
             </ul>
-            <a href="questions.php?n=1" class="start">Start Quiz</a>
+            <a href="./question.php?n=1" class="start">Start Quiz</a>
         </div>
     </main>
 
